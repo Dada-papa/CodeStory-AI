@@ -2,7 +2,7 @@
   "name": "codestory-ai",
   "displayName": "CodeStory AI",
   "description": "AI-powered documentation generator using Ollama and Vertex AI. Automatically documents your code on save.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "icon": "icon.png",
   "publisher": "agupta07505",
   "author": {
@@ -43,14 +43,14 @@
   "main": "./out/extension.js",
   "contributes": {
     "configuration": {
-      "title": "CodeStory",
+      "title": "CodeStory-AI",
       "properties": {
-        "codestory.enabled": {
+        "codestory-ai.enabled": {
           "type": "boolean",
           "default": true,
           "description": "Enable or disable automatic documentation generation."
         },
-        "codestory.provider": {
+        "codestory-ai.provider": {
           "type": "string",
           "enum": [
             "vertex",
@@ -59,17 +59,17 @@
           "default": "ollama",
           "description": "Select the AI provider to use."
         },
-        "codestory.ollamaModel": {
+        "codestory-ai.ollamaModel": {
           "type": "string",
           "default": "llama3",
           "description": "The Ollama model to use (e.g., llama3, mistral)."
         },
-        "codestory.projectId": {
+        "codestory-ai.projectId": {
           "type": "string",
           "default": "",
           "description": "Google Cloud Project ID for Vertex AI."
         },
-        "codestory.docStyle": {
+        "codestory-ai.docStyle": {
           "type": "string",
           "enum": [
             "simple",
@@ -85,49 +85,50 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "codestory-sidebar",
-          "title": "CodeStory",
+          "id": "codestory-ai-sidebar",
+          "title": "CodeStory AI",
           "icon": "icon.png"
         }
       ]
     },
     "views": {
-      "codestory-sidebar": [
+      "codestory-ai-sidebar": [
         {
-          "id": "codestory-settings",
-          "name": "Settings Manager"
+          "id": "codestory-ai-settings",
+          "name": "Settings Manager",
+          "icon": "icon.png"
         }
       ]
     },
     "commands": [
       {
-        "command": "codestory.toggleEnabled",
+        "command": "codestory-ai.toggleEnabled",
         "title": "Toggle Extension Enabled/Disabled",
         "icon": "$(Rd)"
       },
       {
-        "command": "codestory.refreshSettings",
+        "command": "codestory-ai.refreshSettings",
         "title": "Refresh Settings",
         "icon": "$(refresh)"
       },
       {
-        "command": "codestory.setProvider",
+        "command": "codestory-ai.setProvider",
         "title": "Set AI Provider"
       },
       {
-        "command": "codestory.setDocStyle",
+        "command": "codestory-ai.setDocStyle",
         "title": "Set Documentation Style"
       },
       {
-        "command": "codestory.setOllamaModel",
+        "command": "codestory-ai.setOllamaModel",
         "title": "Set Ollama Model"
       },
       {
-        "command": "codestory.setProjectId",
+        "command": "codestory-ai.setProjectId",
         "title": "Set Vertex Project ID"
       },
       {
-        "command": "codestory.about",
+        "command": "codestory-ai.about",
         "title": "About Developer",
         "icon": "$(info)"
       }
@@ -135,8 +136,8 @@
     "menus": {
       "view/title": [
         {
-          "command": "codestory.refreshSettings",
-          "when": "view == codestory-settings",
+          "command": "codestory-ai.refreshSettings",
+          "when": "view == codestory-ai-settings",
           "group": "navigation"
         }
       ]

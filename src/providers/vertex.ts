@@ -6,13 +6,13 @@ export class VertexProvider implements AIProvider {
     private projectId: string;
 
     constructor() {
-        const config = vscode.workspace.getConfiguration('codestory');
+        const config = vscode.workspace.getConfiguration('codestory-ai');
         this.projectId = config.get<string>('projectId', '');
     }
 
     async generate(code: string): Promise<string> {
         if (!this.projectId) {
-            vscode.window.showErrorMessage('CodeStory: Vertex AI Project ID is missing in settings.');
+            vscode.window.showErrorMessage('CodeStory AI: Vertex AI Project ID is missing in settings.');
             throw new Error('Missing Project ID');
         }
 
@@ -24,7 +24,7 @@ export class VertexProvider implements AIProvider {
             // Endpoint format: https://us-central1-aiplatform.googleapis.com/v1/projects/{PROJECT_ID}/locations/us-central1/publishers/google/models/gemini-1.5-flash:generateContent
             const url = `https://us-central1-aiplatform.googleapis.com/v1/projects/${this.projectId}/locations/us-central1/publishers/google/models/gemini-1.5-flash:generateContent`;
 
-            const config = vscode.workspace.getConfiguration('codestory');
+            const config = vscode.workspace.getConfiguration('codestory-ai');
             const style = config.get<string>('docStyle', 'explained');
             let prompt = "Write docs for: " + code;
 

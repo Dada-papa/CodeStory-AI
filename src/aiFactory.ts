@@ -4,7 +4,7 @@ import { VertexProvider } from './providers/vertex';
 import { OllamaProvider } from './providers/ollama';
 
 export function getAIProvider(): AIProvider {
-    const config = vscode.workspace.getConfiguration('codestory');
+    const config = vscode.workspace.getConfiguration('codestory-ai');
     const providerType = config.get<string>('provider', 'vertex');
 
     if (providerType === 'ollama') {

@@ -1,6 +1,6 @@
-# Contributing to CodeStory
+# Contributing to CodeStory AI
 
-Thank you for your interest in contributing to CodeStory! 🚀
+Thank you for your interest in contributing to CodeStory AI! 🚀
 
 We welcome contributions from everyone. By participating in this project, you agree to abide by the [Code of Conduct](CODE_OF_CONDUCT.md).
 

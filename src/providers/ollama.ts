@@ -6,15 +6,15 @@ export class OllamaProvider implements AIProvider {
     private model: string;
 
     constructor() {
-        const config = vscode.workspace.getConfiguration('codestory');
+        const config = vscode.workspace.getConfiguration('codestory-ai');
         this.model = config.get<string>('ollamaModel', 'llama3');
     }
 
     async generate(code: string): Promise<string> {
         try {
-            console.log(`CodeStory: Sending request to Ollama with model ${this.model}...`);
+            console.log(`CodeStory AI: Sending request to Ollama with model ${this.model}...`);
 
-            const config = vscode.workspace.getConfiguration('codestory');
+            const config = vscode.workspace.getConfiguration('codestory-ai');
             const style = config.get<string>('docStyle', 'explained');
 
             let prompt = "Write internal documentation for the following code:\n\n" + code;
@@ -43,7 +43,7 @@ export class OllamaProvider implements AIProvider {
                 timeout: 0 // No timeout (wait indefinitely for slow local inference)
             });
 
-            console.log('CodeStory: Ollama Response:', response.data);
+            console.log('CodeStory AI: Ollama Response:', response.data);
 
             if (!response.data || !response.data.response) {
                 throw new Error('Empty response from Ollama. Ensure model is loaded.');
@@ -52,7 +52,7 @@ export class OllamaProvider implements AIProvider {
             return response.data.response;
         } catch (error: any) {
             const msg = error.response?.data?.error || error.message;
-            console.error('CodeStory: Ollama Error:', msg);
+            console.error('CodeStory AI: Ollama Error:', msg);
             vscode.window.showErrorMessage(`Ollama Connection Failed: ${msg}`);
             throw error;
         }

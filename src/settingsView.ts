@@ -6,7 +6,7 @@ export class SettingsTreeProvider implements vscode.TreeDataProvider<SettingItem
 
     constructor() {
         vscode.workspace.onDidChangeConfiguration(e => {
-            if (e.affectsConfiguration('codestory')) {
+            if (e.affectsConfiguration('codestory-ai')) {
                 this.refresh();
             }
         });
@@ -25,7 +25,7 @@ export class SettingsTreeProvider implements vscode.TreeDataProvider<SettingItem
             return Promise.resolve([]);
         }
 
-        const config = vscode.workspace.getConfiguration('codestory');
+        const config = vscode.workspace.getConfiguration('codestory-ai');
         const provider = config.get<string>('provider', 'vertex');
         const style = config.get<string>('docStyle', 'explained');
         const model = config.get<string>('ollamaModel', 'llama3');
@@ -37,40 +37,40 @@ export class SettingsTreeProvider implements vscode.TreeDataProvider<SettingItem
                 'Status',
                 enabled ? 'Enabled' : 'Disabled',
                 vscode.TreeItemCollapsibleState.None,
-                'codestory.toggleEnabled',
+                'codestory-ai.toggleEnabled',
                 enabled ? 'Click to Disable' : 'Click to Enable'
             ),
             new SettingItem(
                 'AI Provider',
                 provider,
                 vscode.TreeItemCollapsibleState.None,
-                'codestory.setProvider',
+                'codestory-ai.setProvider',
                 'Expected provider: vertex or ollama'
             ),
             new SettingItem(
                 'Doc Style',
                 style,
                 vscode.TreeItemCollapsibleState.None,
-                'codestory.setDocStyle',
+                'codestory-ai.setDocStyle',
                 'Options: simple, concise, explained, detailed'
             ),
             new SettingItem(
                 'Ollama Model',
                 model,
                 vscode.TreeItemCollapsibleState.None,
-                'codestory.setOllamaModel'
+                'codestory-ai.setOllamaModel'
             ),
             new SettingItem(
                 'Vertex Project ID',
                 projectId,
                 vscode.TreeItemCollapsibleState.None,
-                'codestory.setProjectId'
+                'codestory-ai.setProjectId'
             ),
             new SettingItem(
                 'About Developer',
                 'Animesh Gupta',
                 vscode.TreeItemCollapsibleState.None,
-                'codestory.about',
+                'codestory-ai.about',
                 'Click for more info'
             )
         ]);

@@ -12,47 +12,47 @@ const exec = promisify(cp.exec);
 import { SettingsTreeProvider } from './settingsView';
 
 export function activate(context: vscode.ExtensionContext) {
-    console.log('CodeStory extension is now active!');
+    console.log('CodeStory AI extension is now active!');
 
     // Register Sidebar View
     const settingsProvider = new SettingsTreeProvider();
-    vscode.window.registerTreeDataProvider('codestory-settings', settingsProvider);
+    vscode.window.registerTreeDataProvider('codestory-ai-settings', settingsProvider);
 
     // Commands
-    context.subscriptions.push(vscode.commands.registerCommand('codestory.refreshSettings', () => settingsProvider.refresh()));
+    context.subscriptions.push(vscode.commands.registerCommand('codestory-ai.refreshSettings', () => settingsProvider.refresh()));
 
-    context.subscriptions.push(vscode.commands.registerCommand('codestory.setProvider', async () => {
+    context.subscriptions.push(vscode.commands.registerCommand('codestory-ai.setProvider', async () => {
         const option = await vscode.window.showQuickPick(['vertex', 'ollama'], { placeHolder: 'Select AI Provider' });
         if (option) {
-            await vscode.workspace.getConfiguration('codestory').update('provider', option, vscode.ConfigurationTarget.Global);
+            await vscode.workspace.getConfiguration('codestory-ai').update('provider', option, vscode.ConfigurationTarget.Global);
         }
     }));
 
-    context.subscriptions.push(vscode.commands.registerCommand('codestory.setDocStyle', async () => {
+    context.subscriptions.push(vscode.commands.registerCommand('codestory-ai.setDocStyle', async () => {
         const option = await vscode.window.showQuickPick(['simple', 'concise', 'explained', 'detailed'], { placeHolder: 'Select Documentation Style' });
         if (option) {
-            await vscode.workspace.getConfiguration('codestory').update('docStyle', option, vscode.ConfigurationTarget.Global);
+            await vscode.workspace.getConfiguration('codestory-ai').update('docStyle', option, vscode.ConfigurationTarget.Global);
         }
     }));
 
-    context.subscriptions.push(vscode.commands.registerCommand('codestory.setOllamaModel', async () => {
+    context.subscriptions.push(vscode.commands.registerCommand('codestory-ai.setOllamaModel', async () => {
         const value = await vscode.window.showInputBox({ prompt: 'Enter Ollama Model Name', placeHolder: 'e.g., llama3, mistral' });
         if (value) {
-            await vscode.workspace.getConfiguration('codestory').update('ollamaModel', value, vscode.ConfigurationTarget.Global);
+            await vscode.workspace.getConfiguration('codestory-ai').update('ollamaModel', value, vscode.ConfigurationTarget.Global);
         }
     }));
 
-    context.subscriptions.push(vscode.commands.registerCommand('codestory.setProjectId', async () => {
+    context.subscriptions.push(vscode.commands.registerCommand('codestory-ai.setProjectId', async () => {
         const value = await vscode.window.showInputBox({ prompt: 'Enter Vertex AI Project ID' });
         if (value) {
-            await vscode.workspace.getConfiguration('codestory').update('projectId', value, vscode.ConfigurationTarget.Global);
+            await vscode.workspace.getConfiguration('codestory-ai').update('projectId', value, vscode.ConfigurationTarget.Global);
         }
     }));
 
     // About Command
-    context.subscriptions.push(vscode.commands.registerCommand('codestory.about', () => {
+    context.subscriptions.push(vscode.commands.registerCommand('codestory-ai.about', () => {
         vscode.window.showInformationMessage(
-            "CodeStory is built by Animesh Gupta (@agupta07505).",
+            "CodeStory AI is built by Animesh Gupta (@agupta07505).",
             "View GitHub Profile",
             "Connect on LinkedIn"
         ).then(selection => {
@@ -64,11 +64,11 @@ export function activate(context: vscode.ExtensionContext) {
         });
     }));
 
-    context.subscriptions.push(vscode.commands.registerCommand('codestory.toggleEnabled', async () => {
-        const config = vscode.workspace.getConfiguration('codestory');
+    context.subscriptions.push(vscode.commands.registerCommand('codestory-ai.toggleEnabled', async () => {
+        const config = vscode.workspace.getConfiguration('codestory-ai');
         const current = config.get<boolean>('enabled', true);
         await config.update('enabled', !current, vscode.ConfigurationTarget.Global);
-        vscode.window.showInformationMessage(`CodeStory is now ${!current ? 'Enabled' : 'Disabled'}`);
+        vscode.window.showInformationMessage(`CodeStory AI is now ${!current ? 'Enabled' : 'Disabled'}`);
         settingsProvider.refresh();
     }));
 
@@ -76,7 +76,7 @@ export function activate(context: vscode.ExtensionContext) {
     const fileHashes = new Map<string, string>();
 
     const disposable = vscode.workspace.onDidSaveTextDocument(async (document: vscode.TextDocument) => {
-        const config = vscode.workspace.getConfiguration('codestory');
+        const config = vscode.workspace.getConfiguration('codestory-ai');
         if (!config.get<boolean>('enabled', true)) {
             return;
         }
@@ -105,14 +105,14 @@ export function activate(context: vscode.ExtensionContext) {
         // Hashing optimization
         const hash = crypto.createHash('md5').update(code).digest('hex');
         if (fileHashes.get(document.fileName) === hash) {
-            console.log("CodeStory: Content unchanged, skipping generation.");
+            console.log("CodeStory AI: Content unchanged, skipping generation.");
             return;
         }
 
         try {
             await vscode.window.withProgress({
                 location: vscode.ProgressLocation.Notification,
-                title: "CodeStory: Generating documentation...",
+                title: "CodeStory AI: Generating documentation...",
                 cancellable: false
             }, async (progress) => {
                 const provider = getAIProvider();
@@ -123,21 +123,21 @@ export function activate(context: vscode.ExtensionContext) {
                 fileHashes.set(document.fileName, hash);
 
                 // Output to channel
-                const outputChannel = vscode.window.createOutputChannel("CodeStory");
+                const outputChannel = vscode.window.createOutputChannel("CodeStory AI");
                 outputChannel.show(true);
                 outputChannel.appendLine("--- Generated Documentation ---");
                 outputChannel.appendLine(docs);
                 outputChannel.appendLine("-------------------------------");
 
-                // Save to CodeStory Folder
-                progress.report({ message: "Saving to CodeStory/..." });
-                await saveToCodeStoryFolder(document, docs);
+                // Save to CodeStory AI Folder
+                progress.report({ message: "Saving to CodeStory AI/..." });
+                await saveToCodeStoryAIFolder(document, docs);
 
-                vscode.window.showInformationMessage(`CodeStory: Saved to CodeStory/${path.basename(document.fileName, path.extname(document.fileName))}.md`);
+                vscode.window.showInformationMessage(`CodeStory AI: Saved to CodeStory AI/${path.basename(document.fileName, path.extname(document.fileName))}.md`);
             });
 
         } catch (error) {
-            console.error('CodeStory Error:', error);
+            console.error('CodeStory AI Error:', error);
         }
     });
 
@@ -148,7 +148,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 async function checkOllamaRequirements() {
-    const config = vscode.workspace.getConfiguration('codestory');
+    const config = vscode.workspace.getConfiguration('codestory-ai');
     const provider = config.get<string>('provider');
     const model = config.get<string>('ollamaModel', 'llama3');
 
@@ -163,12 +163,12 @@ async function checkOllamaRequirements() {
         const { stdout } = await exec('ollama list');
         if (!stdout.includes(model)) {
             const val = await vscode.window.showWarningMessage(
-                `CodeStory: The model '${model}' is not found in Ollama.`,
+                `CodeStory AI: The model '${model}' is not found in Ollama.`,
                 'Download Model',
                 'Cancel'
             );
             if (val === 'Download Model') {
-                const terminal = vscode.window.createTerminal('CodeStory Setup');
+                const terminal = vscode.window.createTerminal('CodeStory AI Setup');
                 terminal.show();
                 terminal.sendText(`ollama pull ${model}`);
             }
@@ -176,7 +176,7 @@ async function checkOllamaRequirements() {
     } catch (error) {
         // likely ollama not installed or not in path
         const val = await vscode.window.showErrorMessage(
-            "CodeStory: Ollama is not detected! It is required for local documentation generation.",
+            "CodeStory AI: Ollama is not detected! It is required for local documentation generation.",
             "Install Ollama",
             "Ignore"
         );
@@ -186,15 +186,15 @@ async function checkOllamaRequirements() {
     }
 }
 
-async function saveToCodeStoryFolder(document: vscode.TextDocument, content: string) {
+async function saveToCodeStoryAIFolder(document: vscode.TextDocument, content: string) {
     if (!vscode.workspace.workspaceFolders) {
         return;
     }
 
     const rootPath = vscode.workspace.workspaceFolders[0].uri.fsPath;
-    const folderPath = path.join(rootPath, 'CodeStory');
+    const folderPath = path.join(rootPath, 'CodeStory AI');
 
-    // Create CodeStory folder if needed
+    // Create CodeStory AI folder if needed
     if (!fs.existsSync(folderPath)) {
         fs.mkdirSync(folderPath);
     }
@@ -204,7 +204,7 @@ async function saveToCodeStoryFolder(document: vscode.TextDocument, content: str
     const baseName = path.basename(fileName, ext); // e.g., extension
 
     // Naming: (file name excluding extension) + .md
-    // Example: extension.ts -> CodeStory/extension.md
+    // Example: extension.ts -> CodeStory AI/extension.md
     const mdFileName = `${baseName}.md`;
     const mdFilePath = path.join(folderPath, mdFileName);
 
